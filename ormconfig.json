@@ -1,0 +1,9 @@
+{
+  "type": "sqlite",
+  "database": "imaginary_kingdoms.db",
+  "synchronize": true,
+  "logging": true,
+  "entities": [
+    "src/entities/**/*.ts"
+  ]
+}
