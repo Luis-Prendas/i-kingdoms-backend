@@ -1,0 +1,33 @@
+{
+  "name": "imaginary-kingdoms-backend",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "production": "npm i && npx tsc",
+    "migrate": "knex migrate:latest --knexfile src/knex/knexfile.ts",
+    "migrate:rollback": "knex migrate:rollback --knexfile src/knex/knexfile.ts -x ts",
+    "migrate:make": "knex migrate:make --knexfile src/knex/knexfile.ts -x ts"
+  },
+  "keywords": [],
+  "author": "Luis Daniel Prendas Chavarria",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "16.4.5",
+    "express": "4.21.1",
+    "knex": "3.1.0",
+    "nodemon": "3.1.7",
+    "sqlite3": "5.1.7",
+    "uuid": "11.0.1"
+  },
+  "devDependencies": {
+    "@types/cors": "2.8.17",
+    "@types/express": "5.0.0",
+    "ts-node-dev": "2.0.0",
+    "typescript": "5.6.3"
+  }
+}
