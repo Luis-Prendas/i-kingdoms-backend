@@ -10,7 +10,7 @@ const attributeRouter = express.Router();
 
 attributeRouter.get('/', async (req, res) => {
   try {
-    const items = await db<Attribute>('attribute').select('*');
+    const items = await db<Attribute>('attribute').select('*').where('is_deleted', false);
     const response: API_RESPONSE<Attribute[]> = { status: 200, message: 'OK', response: items };
     res.status(200).json(response);
   } catch (error) {
