@@ -2,7 +2,7 @@ import express from 'express';
 import knexConfig from '../../knex/knexfile';
 import knex from 'knex';
 import { API_RESPONSE } from '../../types/api';
-import { Skill } from '../../types/tables/skill/skill';
+import { DB_SkillWithRelation, Skill } from '../../types/tables/skill/skill';
 
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
@@ -10,12 +10,33 @@ const skillRouter = express.Router();
 
 skillRouter.get('/', async (req, res) => {
   try {
-    const items = await db<Skill>('skill').select('*');
+    const items = await db<Skill>('skill').select('*').where('is_deleted', false)
     const response: API_RESPONSE<Skill[]> = { status: 200, message: 'OK', response: items };
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
     const response: API_RESPONSE<Skill[]> = { status: 500, message: '/api/skill - Internal Server Error', response: null };
+    res.status(500).json(response);
+  }
+});
+
+skillRouter.get('/all-relation', async (req, res) => {
+  try {
+    const items: DB_SkillWithRelation[] = await db('skill')
+      .select({
+        skill_id: 'skill.id',
+        skill_name: 'skill.skill_name',
+        short_name: 'skill.short_name',
+        attribute_id: 'attribute.id',
+        attribute_name: 'attribute.attribute_name'
+      })
+      .innerJoin('attribute', 'attribute.id', 'skill.attribute_id')
+      .where('skill.is_deleted', false);
+    const response: API_RESPONSE<Skill[]> = { status: 200, message: 'OK', response: items };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response: API_RESPONSE<Skill[]> = { status: 500, message: '/api/skill/maintenance-table - Internal Server Error', response: null };
     res.status(500).json(response);
   }
 });
@@ -42,6 +63,7 @@ skillRouter.post('/create', async (req, res) => {
     const response: API_RESPONSE<number[]> = { status: 200, message: 'Skill created successfully', response: item };
     res.status(200).json(response);
   } catch (error) {
+    console.log('HEREEEEEEE!')
     console.error(error);
     const response: API_RESPONSE<Skill> = { status: 500, message: '/api/skill/create - Internal Server Error', response: null };
     res.status(500).json(response);

@@ -7,7 +7,11 @@ const config: { [key: string]: Knex.Config } = {
       filename: "./src/knex/dev.sqlite3"
     },
     useNullAsDefault: true,
-    debug: true
+    debug: true,
+    migrations: {
+      directory: '/',
+      tableName: 'migrations'
+    }
   },
 
   production: {
@@ -16,6 +20,10 @@ const config: { [key: string]: Knex.Config } = {
       filename: "./src/knex/prod.sqlite3"
     },
     useNullAsDefault: true,
+    migrations: {
+      directory: '/',
+      tableName: 'migrations'
+    }
   }
 };
 
