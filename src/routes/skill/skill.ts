@@ -2,7 +2,7 @@ import express from 'express';
 import knexConfig from '../../knex/knexfile';
 import knex from 'knex';
 import { API_RESPONSE } from '../../types/api';
-import { DB_SkillWithRelation, Skill } from '../../types/tables/skill/skill';
+import { DB_SkillJoinAttribute, Skill } from '../../types/tables/skill/skill';
 
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
@@ -20,18 +20,21 @@ skillRouter.get('/', async (req, res) => {
   }
 });
 
-skillRouter.get('/all-relation', async (req, res) => {
+skillRouter.get('/join-attribute', async (req, res) => {
   try {
-    const items: DB_SkillWithRelation[] = await db('skill')
+    const items: DB_SkillJoinAttribute[] = await db('skill')
       .select({
-        skill_id: 'skill.id',
+        id: 'skill.id',
+        is_deleted: 'skill.is_deleted',
         skill_name: 'skill.skill_name',
         short_name: 'skill.short_name',
-        attribute_id: 'attribute.id',
-        attribute_name: 'attribute.attribute_name'
+        created_at: 'skill.created_at',
+        updated_at: 'skill.updated_at',
+        attribute_name: 'attribute.attribute_name',
+        attribute_id: 'attribute.id'
       })
       .innerJoin('attribute', 'attribute.id', 'skill.attribute_id')
-      .where('skill.is_deleted', false);
+      .where('skill.is_deleted', false).andWhere('attribute.is_deleted', false);
     const response: API_RESPONSE<Skill[]> = { status: 200, message: 'OK', response: items };
     res.status(200).json(response);
   } catch (error) {

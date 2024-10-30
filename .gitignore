@@ -1,6 +1,5 @@
 node_modules
 .env
 package-lock.json
-notes.txt
 back-up.ts
-migrations
+dev.sqlite3
