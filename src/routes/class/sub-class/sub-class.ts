@@ -28,12 +28,15 @@ subClassRouter.get('/join-class', async (req, res) => {
       .select(
         { id: 'sub_class.id' },
         { is_deleted: 'sub_class.is_deleted' },
+        { created_at: 'sub_class.created_at' },
+        { updated_at: 'sub_class.updated_at' },
+
+        { class_id: 'class.id' },
         { sub_class_name: 'sub_class.sub_class_name' },
         { description: 'sub_class.description' },
+        { required_level: 'sub_class.required_level' },
+        
         { class_name: 'class.class_name' },
-        { class_id: 'class.id' },
-        { created_at: 'sub_class.created_at' },
-        { updated_at: 'sub_class.updated_at' }
       )
       .innerJoin('class', 'class.id', 'sub_class.class_id')
       .where('sub_class.is_deleted', false).andWhere('class.is_deleted', false);

@@ -19,8 +19,8 @@ classRouter.use('/sub-class/attribute-bonus', attributeBonusRouter);
 
 classRouter.get('/', async (req, res) => {
   try {
-    const items = await db<DB_Class>('class').select('*');
-    const response: API_RESPONSE<DB_Class[]> = { status: 200, message: 'OK', response: items };
+    const items = await db<DB_Class>('class').select('*').where('is_deleted', false);
+    const response: API_RESPONSE<DB_Class[]> = { status: 200, message: 'OK', response: items }
     res.status(200).json(response);
   } catch (error) {
     console.error(error);
