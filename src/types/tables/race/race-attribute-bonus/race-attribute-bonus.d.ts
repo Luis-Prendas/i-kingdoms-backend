@@ -1,7 +1,7 @@
 import { BASE_DB_TABLE } from "../../../api";
 
 export interface Base_RaceAttributeBonus {
-  race_id: number;
+  sub_race_id: number;
   attribute_id: number;
   bonus: number;
 }

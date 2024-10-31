@@ -12,8 +12,8 @@ const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 const classRouter = express.Router();
 
 classRouter.use('/sub-class', subClassRouter);
-classRouter.use('/skill-bonus', skillBonusRouter);
-classRouter.use('/attribute-bonus', attributeBonusRouter);
+classRouter.use('/sub-class/skill-bonus', skillBonusRouter);
+classRouter.use('/sub-class/attribute-bonus', attributeBonusRouter);
 
 classRouter.get('/', async (req, res) => {
   try {

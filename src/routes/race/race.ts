@@ -13,8 +13,8 @@ const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 const raceRouter = express.Router();
 
 raceRouter.use('/sub-race', subRaceRouter);
-raceRouter.use('/skill-bonus', raceSkillBonusRouter);
-raceRouter.use('/attribute-bonus', raceAttributeBonusRouter);
+raceRouter.use('/sub-race/skill-bonus', raceSkillBonusRouter);
+raceRouter.use('/sub-race/attribute-bonus', raceAttributeBonusRouter);
 
 raceRouter.get('/', async (req, res) => {
   try {

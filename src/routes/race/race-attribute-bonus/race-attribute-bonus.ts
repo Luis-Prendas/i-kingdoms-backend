@@ -26,14 +26,13 @@ raceAttributeBonusRouter.get('/join-subrace-attribute', async (req, res) => {
       .select(
         { id: 'race_attribute_bonus.id' },
         { is_deleted: 'race_attribute_bonus.is_deleted' },
-        { bonus: 'race_attribute_bonus.bonus' },
-        { required_level: 'race_attribute_bonus.required_level' },
-        { attribute_id: 'attribute.id' },
-        { attribute_name: 'attribute.attribute_name' },
-        { sub_race_id: 'sub_race.id' },
-        { sub_race_name: 'sub_race.sub_race_name' },
         { created_at: 'race_attribute_bonus.created_at' },
-        { updated_at: 'race_attribute_bonus.updated_at' }
+        { updated_at: 'race_attribute_bonus.updated_at' },
+        { sub_race_id: 'sub_race.id' },
+        { attribute_id: 'attribute.id' },
+        { bonus: 'race_attribute_bonus.bonus' },
+        { sub_race_name: 'sub_race.sub_race_name' },
+        { attribute_name: 'attribute.attribute_name' },
       )
       .innerJoin('sub_race', 'sub_race.id', 'race_attribute_bonus.sub_race_id')
       .innerJoin('attribute', 'attribute.id', 'race_attribute_bonus.attribute_id')
@@ -63,8 +62,8 @@ raceAttributeBonusRouter.get('/id/:id', async (req, res) => {
 
 raceAttributeBonusRouter.post('/create', async (req, res) => {
   try {
-    const { race_id, attribute_id, bonus } = req.body;
-    const newItem: Base_RaceAttributeBonus = { race_id, attribute_id, bonus };
+    const { sub_race_id, attribute_id, bonus } = req.body;
+    const newItem: Base_RaceAttributeBonus = { sub_race_id, attribute_id, bonus };
     const item = await db<Base_RaceAttributeBonus>('race_attribute_bonus').insert(newItem);
     const response: API_RESPONSE<number[]> = { status: 200, message: 'Race Attribute Bonus created successfully', response: item };
     res.status(200).json(response);
@@ -77,8 +76,8 @@ raceAttributeBonusRouter.post('/create', async (req, res) => {
 
 raceAttributeBonusRouter.put('/update', async (req, res) => {
   try {
-    const { id, race_id, attribute_id, bonus } = req.body;
-    const updatedItem: Base_RaceAttributeBonus = { race_id, attribute_id, bonus };
+    const { id, sub_race_id, attribute_id, bonus } = req.body;
+    const updatedItem: Base_RaceAttributeBonus = { sub_race_id, attribute_id, bonus };
     const item = await db<DB_RaceAttributeBonus>('race_attribute_bonus').where({ id: Number(id) }).update(updatedItem);
     const response: API_RESPONSE<number> = { status: 200, message: 'Race Attribute Bonus updated successfully', response: item };
     res.status(200).json(response);
