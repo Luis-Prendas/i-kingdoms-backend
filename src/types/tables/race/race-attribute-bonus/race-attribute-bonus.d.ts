@@ -8,4 +8,7 @@ export interface Base_RaceAttributeBonus {
 
 export interface DB_RaceAttributeBonus extends Base_RaceAttributeBonus, BASE_DB_TABLE {}
 
-export type RaceAttributeBonus = Base_RaceAttributeBonus | DB_RaceAttributeBonus;
+export interface DB_RaceAttributeBonusJoinSubRaceAttribute extends DB_RaceAttributeBonus {
+  sub_race_name: string;
+  attribute_name: string;
+}

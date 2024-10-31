@@ -6,6 +6,7 @@ import { Base_Race, DB_Race, DB_RaceWithSubRace, DB_Response_RaceWithSubRace } f
 import { groupedByRace } from '../../lib/group-by-race';
 import subRaceRouter from './sub-race/sub-race';
 import raceSkillBonusRouter from './race-skill-bonus/race-skill-bonus';
+import raceAttributeBonusRouter from './race-attribute-bonus/race-attribute-bonus';
 
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
@@ -13,6 +14,7 @@ const raceRouter = express.Router();
 
 raceRouter.use('/sub-race', subRaceRouter);
 raceRouter.use('/skill-bonus', raceSkillBonusRouter);
+raceRouter.use('/attribute-bonus', raceAttributeBonusRouter);
 
 raceRouter.get('/', async (req, res) => {
   try {
@@ -26,7 +28,21 @@ raceRouter.get('/', async (req, res) => {
   }
 });
 
-raceRouter.get('/with-sub-race', async (req, res) => {
+raceRouter.get('/id/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const item = await db<DB_Race>('race').where({ id: Number(id) }).first();
+    if (!item) throw new Error('Race not found');
+    const response: API_RESPONSE<DB_Race> = { status: 200, message: 'OK', response: item };
+    res.status(200).json(response);
+  } catch (error) {
+    console.error(error);
+    const response: API_RESPONSE<DB_Race> = { status: 500, message: '/api/race/id/:id - Internal Server Error', response: null };
+    res.status(500).json(response);
+  }
+});
+
+raceRouter.get('/join-subrace', async (req, res) => {
   try {
     const items: DB_Response_RaceWithSubRace[] = await db('race')
       .select({

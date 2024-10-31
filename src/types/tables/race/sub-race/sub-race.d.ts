@@ -6,7 +6,7 @@ export interface Base_SubRace {
   description: string;
 }
 
-export interface DB_SubRace extends Base_SubRace, BASE_DB_TABLE {}
+export interface DB_SubRace extends Base_SubRace, BASE_DB_TABLE { }
 
 export interface DB_SubRaceJoinRace extends DB_SubRace {
   race_name: string;

@@ -6,5 +6,3 @@ export interface Base_Class {
 }
 
 export interface DB_Class extends Base_Class, BASE_DB_TABLE { }
-
-export type Class = Base_Class | DB_Class;

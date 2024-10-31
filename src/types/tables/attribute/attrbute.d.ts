@@ -6,5 +6,3 @@ export interface Base_Attribute {
 }
 
 export interface DB_Attribute extends Base_Attribute, BASE_DB_TABLE {}
-
-export type Attribute = Base_Attribute | DB_Attribute;

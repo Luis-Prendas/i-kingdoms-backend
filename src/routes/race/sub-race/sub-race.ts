@@ -44,7 +44,7 @@ subRaceRouter.get('/join-race', async (req, res) => {
   }
 })
 
-subRaceRouter.get('/:id', async (req, res) => {
+subRaceRouter.get('/id/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const item = await db<DB_SubRace>('sub_race').where({ id: Number(id) }).first();
