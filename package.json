@@ -6,7 +6,7 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "production": "npm i && npx tsc",
+    "production": "npm i && npx tsc && npm run migrate",
     "migrate": "knex migrate:latest --knexfile src/knex/knexfile.ts",
     "migrate:rollback": "knex migrate:rollback --knexfile src/knex/knexfile.ts",
     "migrate:make": "knex migrate:make --knexfile src/knex/knexfile.ts -x ts",
