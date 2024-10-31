@@ -3,3 +3,4 @@ node_modules
 package-lock.json
 back-up.ts
 dev.sqlite3
+dist
