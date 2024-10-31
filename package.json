@@ -6,11 +6,12 @@
     "build": "npx tsc",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "production": "npm i && npx tsc && npm run migrate",
+    "production": "npm i && npx tsc && npm run migrate:production",
     "migrate": "knex migrate:latest --knexfile src/knex/knexfile.ts",
+    "migrate:production": "knex migrate:latest --knexfile src/knex/knexfile.ts --env production",
     "migrate:rollback": "knex migrate:rollback --knexfile src/knex/knexfile.ts",
     "migrate:make": "knex migrate:make --knexfile src/knex/knexfile.ts -x ts",
-    "phenix": "if exist node_modules rmdir /s /q node_modules && if exist package-lock.json del package-lock.json && npm install"
+    "phenix": "if exist node_modules rmdir /s /q node_modules && if exist package-lock.json del package-lock.json"
   },
   "keywords": [],
   "author": "Luis Daniel Prendas Chavarria",
