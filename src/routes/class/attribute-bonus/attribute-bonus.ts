@@ -4,6 +4,8 @@ import knexConfig from '../../../knex/knexfile';
 import { API_RESPONSE } from '../../../types/api';
 import { Base_AttributeBonus, DB_AttributeBonus, DB_AttributeBonusJoinAttributeClass } from '../../../types/tables/class/attribute-bonus/attribute-bonus';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const attributeBonusRouter = express.Router();

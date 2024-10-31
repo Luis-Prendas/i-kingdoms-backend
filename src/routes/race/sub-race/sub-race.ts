@@ -4,6 +4,8 @@ import knex from 'knex';
 import { API_RESPONSE } from '../../../types/api';
 import { Base_SubRace, DB_SubRace, DB_SubRaceJoinRace } from '../../../types/tables/race/sub-race/sub-race';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const subRaceRouter = express.Router();

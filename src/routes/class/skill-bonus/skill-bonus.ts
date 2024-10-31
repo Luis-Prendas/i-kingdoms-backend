@@ -4,6 +4,8 @@ import knexConfig from '../../../knex/knexfile';
 import { API_RESPONSE } from '../../../types/api';
 import { Base_SkillBonus, DB_SkillBonus, DB_SkillBonusJoinSkillClass } from '../../../types/tables/class/skill-bonus/skill-bonus';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const skillBonusRouter = express.Router();

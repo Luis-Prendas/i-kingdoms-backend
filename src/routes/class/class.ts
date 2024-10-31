@@ -7,6 +7,8 @@ import subClassRouter from './sub-class/sub-class';
 import skillBonusRouter from './skill-bonus/skill-bonus';
 import attributeBonusRouter from './attribute-bonus/attribute-bonus';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const classRouter = express.Router();

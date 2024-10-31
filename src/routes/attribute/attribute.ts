@@ -3,7 +3,8 @@ import knexConfig from '../../knex/knexfile';
 import knex from 'knex';
 import { Base_Attribute, DB_Attribute } from '../../types/tables/attribute/attrbute';
 import { API_RESPONSE } from '../../types/api';
-
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const attributeRouter = express.Router();

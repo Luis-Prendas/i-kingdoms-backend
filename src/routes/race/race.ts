@@ -8,6 +8,8 @@ import subRaceRouter from './sub-race/sub-race';
 import raceSkillBonusRouter from './race-skill-bonus/race-skill-bonus';
 import raceAttributeBonusRouter from './race-attribute-bonus/race-attribute-bonus';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const raceRouter = express.Router();

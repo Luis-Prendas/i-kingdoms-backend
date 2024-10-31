@@ -4,6 +4,8 @@ import knex from 'knex';
 import { API_RESPONSE } from '../../../types/api';
 import { Base_RaceAttributeBonus, DB_RaceAttributeBonus, DB_RaceAttributeBonusJoinSubRaceAttribute } from '../../../types/tables/race/race-attribute-bonus/race-attribute-bonus';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const raceAttributeBonusRouter = express.Router();

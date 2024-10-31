@@ -4,6 +4,8 @@ import knex from 'knex';
 import { API_RESPONSE } from '../../types/api';
 import { DB_SkillJoinAttribute, Base_Skill, DB_Skill } from '../../types/tables/skill/skill';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const skillRouter = express.Router();

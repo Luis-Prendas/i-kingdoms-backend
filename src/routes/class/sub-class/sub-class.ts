@@ -4,6 +4,8 @@ import { API_RESPONSE } from '../../../types/api';
 import knexConfig from '../../../knex/knexfile';
 import { Base_SubClass, DB_SubClass, DB_SubClassJoinClass } from '../../../types/tables/class/sub-class/sub-class';
 
+import dotenv from "dotenv";
+dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
 
 const subClassRouter = express.Router();
