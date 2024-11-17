@@ -68,7 +68,6 @@ skillRouter.post('/create', async (req, res) => {
     const response: API_RESPONSE<number[]> = { status: 200, message: 'Skill created successfully', response: item };
     res.status(200).json(response);
   } catch (error) {
-    console.log('HEREEEEEEE!')
     console.error(error);
     const response: API_RESPONSE<DB_Skill> = { status: 500, message: '/api/skill/create - Internal Server Error', response: null };
     res.status(500).json(response);

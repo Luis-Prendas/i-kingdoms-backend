@@ -5,3 +5,4 @@ back-up.ts
 dev.sqlite3
 prod.sqlite3
 dist
+_notes.txt
