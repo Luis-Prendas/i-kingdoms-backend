@@ -6,12 +6,12 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.boolean('is_deleted').defaultTo(false);
     table.timestamps(true, true);
-    table.string('race_name').notNullable();
+    table.string('name').notNullable();
     table.string('description')
   }).finally(async () => {
     await knex('race').insert([
-      { race_name: 'Humano', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { race_name: 'Elfo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." }
+      { name: 'Humano', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Elfo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." }
     ])
   })
 
@@ -20,17 +20,17 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.boolean('is_deleted').defaultTo(false);
     table.timestamps(true, true);
-    table.string('sub_race_name').notNullable();
+    table.string('name').notNullable();
     table.string('description')
 
     // Relaciones
     table.integer('race_id').unsigned().notNullable().references('id').inTable('race').onDelete('CASCADE');
   }).finally(async () => {
     await knex('sub_race').insert([
-      { sub_race_name: 'Variante', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_race_name: 'Robusto', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_race_name: 'Alto Elfo', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_race_name: 'Elfo de los bosques', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Variante', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Robusto', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Alto Elfo', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Elfo de los bosques', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 

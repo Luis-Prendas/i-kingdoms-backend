@@ -1,4 +1,4 @@
-export type BASE_DB_TABLE = {
+export type BaseTable = {
   id: number;
   is_deleted: boolean;
   created_at: string;

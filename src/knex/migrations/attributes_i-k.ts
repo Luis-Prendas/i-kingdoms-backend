@@ -6,16 +6,17 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.boolean('is_deleted').defaultTo(false);
     table.timestamps(true, true);
-    table.string('attribute_name').notNullable();
+    table.string('name').notNullable();
     table.string('short_name').notNullable();
+    table.string('description')
   }).finally(async () => {
     await knex('attribute').insert([
-      { attribute_name: 'Fuerza', short_name: 'fue' },
-      { attribute_name: 'Destreza', short_name: 'des' },
-      { attribute_name: 'Constitución', short_name: 'con' },
-      { attribute_name: 'Inteligencia', short_name: 'int' },
-      { attribute_name: 'Sabiduría', short_name: 'sab' },
-      { attribute_name: 'Carisma', short_name: 'car' },
+      { name: 'Fuerza', short_name: 'fue' },
+      { name: 'Destreza', short_name: 'des' },
+      { name: 'Constitución', short_name: 'con' },
+      { name: 'Inteligencia', short_name: 'int' },
+      { name: 'Sabiduría', short_name: 'sab' },
+      { name: 'Carisma', short_name: 'car' },
     ])
   })
 }

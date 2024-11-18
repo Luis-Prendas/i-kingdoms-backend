@@ -6,14 +6,14 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.boolean('is_deleted').defaultTo(false);
     table.timestamps(true, true);
-    table.string('class_name').notNullable();
+    table.string('name').notNullable();
     table.string('description')
   }).finally(async () => {
     await knex('class').insert([
-      { class_name: 'Barbaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { class_name: 'Bardo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { class_name: 'Picaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { class_name: 'Monge', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Barbaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Bardo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Picaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Monge', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 
@@ -22,7 +22,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.boolean('is_deleted').defaultTo(false);
     table.timestamps(true, true);
-    table.string('sub_class_name').notNullable();
+    table.string('name').notNullable();
     table.string('description');
     table.integer('required_level').notNullable();
 
@@ -30,10 +30,10 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('class_id').unsigned().notNullable().references('id').inTable('class').onDelete('CASCADE');
   }).finally(async () => {
     await knex('sub_class').insert([
-      { sub_class_name: 'Barbaro', class_id: 1, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_class_name: 'Bardo', class_id: 2, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_class_name: 'Picaro', class_id: 3, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { sub_class_name: 'Monge', class_id: 4, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Barbaro', class_id: 1, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Bardo', class_id: 2, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Picaro', class_id: 3, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Monge', class_id: 4, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 
