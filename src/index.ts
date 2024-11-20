@@ -12,6 +12,10 @@ import subRaceRouter from "./routes/race/sub-race";
 import raceAttributeBonusRouter from "./routes/race/race-attribute-bonus";
 import raceSkillBonusRouter from "./routes/race/race-skill-bonus";
 import sheetRouter from "./routes/sheet/sheet";
+import sheetAttributeRouter from "./routes/sheet/sheet-attribute";
+import sheetSkillRouter from "./routes/sheet/sheet-skill";
+import sheetRaceRouter from "./routes/sheet/sheet-race";
+import sheetClassRouter from "./routes/sheet/sheet-class";
 
 const app = express();
 dotenv.config();
@@ -33,6 +37,10 @@ app.use('/api/class-attribute-bonus', classAttributeBonusRouter);
 app.use('/api/class-skill-bonus', classSkillBonusRouter);
 
 app.use('/api/sheet', sheetRouter);
+app.use('/api/sheet-attribute', sheetAttributeRouter);
+app.use('/api/sheet-skill', sheetSkillRouter);
+app.use('/api/sheet-race', sheetRaceRouter);
+app.use('/api/sheet-class', sheetClassRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

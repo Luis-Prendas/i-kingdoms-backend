@@ -10,7 +10,6 @@ export async function up(knex: Knex): Promise<void> {
     table.string('description')
   }).finally(async () => {
     await knex('race').insert([
-      { name: 'Humano', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
       { name: 'Elfo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." }
     ])
   })
@@ -27,10 +26,8 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('race_id').unsigned().notNullable().references('id').inTable('race').onDelete('CASCADE');
   }).finally(async () => {
     await knex('sub_race').insert([
-      { name: 'Variante', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Robusto', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Alto Elfo', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Elfo de los bosques', race_id: 2, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Alto Elfo', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Elfo de los bosques', race_id: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 
@@ -46,19 +43,12 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('attribute_id').unsigned().notNullable().references('id').inTable('attribute').onDelete('CASCADE');
   }).finally(async () => {
     await knex('race_attribute_bonus').insert([
-      { bonus: 1, sub_race_id: 1, attribute_id: 1 },
-      { bonus: 1, sub_race_id: 1, attribute_id: 2 },
       { bonus: 1, sub_race_id: 1, attribute_id: 3 },
-      { bonus: 1, sub_race_id: 1, attribute_id: 4 },
+      { bonus: 3, sub_race_id: 1, attribute_id: 4 },
       { bonus: 1, sub_race_id: 1, attribute_id: 5 },
-      { bonus: 1, sub_race_id: 1, attribute_id: 6 },
-      { bonus: 3, sub_race_id: 2, attribute_id: 1 },
-      { bonus: 1, sub_race_id: 2, attribute_id: 2 },
+      { bonus: 2, sub_race_id: 2, attribute_id: 2 },
       { bonus: 2, sub_race_id: 2, attribute_id: 3 },
-      { bonus: 2, sub_race_id: 3, attribute_id: 4 },
-      { bonus: 2, sub_race_id: 3, attribute_id: 5 },
-      { bonus: 2, sub_race_id: 4, attribute_id: 2 },
-      { bonus: 2, sub_race_id: 4, attribute_id: 3 },
+      { bonus: 1, sub_race_id: 2, attribute_id: 5 },
     ])
   })
 
@@ -78,11 +68,6 @@ export async function up(knex: Knex): Promise<void> {
       { bonus: 2, sub_race_id: 1, skill_id: 14 },
       { bonus: 2, sub_race_id: 2, skill_id: 1 },
       { bonus: 4, sub_race_id: 2, skill_id: 16 },
-      { bonus: -2, sub_race_id: 2, skill_id: 11 },
-      { bonus: -2, sub_race_id: 2, skill_id: 13 },
-      { bonus: 2, sub_race_id: 3, skill_id: 5 },
-      { bonus: 2, sub_race_id: 3, skill_id: 6 },
-      { bonus: 4, sub_race_id: 4, skill_id: 8 },
     ])
   })
 }

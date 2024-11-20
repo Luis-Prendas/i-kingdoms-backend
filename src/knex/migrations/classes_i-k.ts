@@ -11,9 +11,6 @@ export async function up(knex: Knex): Promise<void> {
   }).finally(async () => {
     await knex('class').insert([
       { name: 'Barbaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Bardo', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Picaro', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Monge', description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 
@@ -30,10 +27,7 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('class_id').unsigned().notNullable().references('id').inTable('class').onDelete('CASCADE');
   }).finally(async () => {
     await knex('sub_class').insert([
-      { name: 'Barbaro', class_id: 1, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Bardo', class_id: 2, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Picaro', class_id: 3, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-      { name: 'Monge', class_id: 4, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+      { name: 'Barbaro Base', class_id: 1, required_level: 1, description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
     ])
   })
 
@@ -50,19 +44,9 @@ export async function up(knex: Knex): Promise<void> {
     table.integer('attribute_id').unsigned().notNullable().references('id').inTable('attribute').onDelete('CASCADE');
   }).finally(async () => {
     await knex('class_attribute_bonus').insert([
-      { bonus: 1, sub_class_id: 1, attribute_id: 1, required_level: 1 },
+      { bonus: 3, sub_class_id: 1, attribute_id: 1, required_level: 1 },
       { bonus: 1, sub_class_id: 1, attribute_id: 2, required_level: 1 },
-      { bonus: 1, sub_class_id: 1, attribute_id: 3, required_level: 1 },
-      { bonus: 1, sub_class_id: 1, attribute_id: 4, required_level: 1 },
-      { bonus: 1, sub_class_id: 1, attribute_id: 5, required_level: 1 },
-      { bonus: 1, sub_class_id: 1, attribute_id: 6, required_level: 1 },
-      { bonus: 3, sub_class_id: 2, attribute_id: 1, required_level: 1 },
-      { bonus: 1, sub_class_id: 2, attribute_id: 2, required_level: 1 },
-      { bonus: 2, sub_class_id: 2, attribute_id: 3, required_level: 1 },
-      { bonus: 2, sub_class_id: 3, attribute_id: 4, required_level: 1 },
-      { bonus: 2, sub_class_id: 3, attribute_id: 5, required_level: 1 },
-      { bonus: 2, sub_class_id: 4, attribute_id: 2, required_level: 1 },
-      { bonus: 2, sub_class_id: 4, attribute_id: 3, required_level: 1 },
+      { bonus: 2, sub_class_id: 1, attribute_id: 3, required_level: 1 },
     ])
   })
 
@@ -81,13 +65,6 @@ export async function up(knex: Knex): Promise<void> {
     await knex('class_skill_bonus').insert([
       { bonus: 2, sub_class_id: 1, skill_id: 8, required_level: 1 },
       { bonus: 2, sub_class_id: 1, skill_id: 14, required_level: 1 },
-      { bonus: 2, sub_class_id: 2, skill_id: 1, required_level: 1 },
-      { bonus: 4, sub_class_id: 2, skill_id: 16, required_level: 1 },
-      { bonus: -2, sub_class_id: 2, skill_id: 11, required_level: 1 },
-      { bonus: -2, sub_class_id: 2, skill_id: 13, required_level: 1 },
-      { bonus: 2, sub_class_id: 3, skill_id: 5, required_level: 1 },
-      { bonus: 2, sub_class_id: 3, skill_id: 6, required_level: 1 },
-      { bonus: 4, sub_class_id: 4, skill_id: 8, required_level: 1 },
     ])
   })
 }

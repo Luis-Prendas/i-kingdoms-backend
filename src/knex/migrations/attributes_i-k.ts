@@ -11,12 +11,12 @@ export async function up(knex: Knex): Promise<void> {
     table.string('description')
   }).finally(async () => {
     await knex('attribute').insert([
-      { name: 'Fuerza', short_name: 'fue' },
-      { name: 'Destreza', short_name: 'des' },
-      { name: 'Constitución', short_name: 'con' },
-      { name: 'Inteligencia', short_name: 'int' },
-      { name: 'Sabiduría', short_name: 'sab' },
-      { name: 'Carisma', short_name: 'car' },
+      { name: 'Fuerza', short_name: 'Fue' },
+      { name: 'Destreza', short_name: 'Des' },
+      { name: 'Constitución', short_name: 'Con' },
+      { name: 'Inteligencia', short_name: 'Int' },
+      { name: 'Sabiduría', short_name: 'Sab' },
+      { name: 'Carisma', short_name: 'Car' },
     ])
   })
 }

@@ -5,9 +5,9 @@ import { API_RESPONSE } from '../../types/api';
 import dotenv from "dotenv";
 import { AttributeTable } from '../../types/tables/attribute';
 import { Attribute } from '../../types/tables/attribute/base';
+
 dotenv.config();
 const db = knex(knexConfig[process.env.NODE_ENV || 'development']);
-
 const attributeRouter = express.Router();
 
 attributeRouter.get('/', async (req, res) => {
@@ -18,20 +18,6 @@ attributeRouter.get('/', async (req, res) => {
   } catch (error) {
     console.error(error);
     const response: API_RESPONSE<AttributeTable[]> = { status: 500, message: '/api/attribute - Internal Server Error', response: null };
-    res.status(500).json(response);
-  }
-});
-
-attributeRouter.get('/id/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-    const item = await db<AttributeTable>('attribute').where({ id: Number(id) }).first();
-    if (!item) throw new Error('Attribute not found');    
-    const response: API_RESPONSE<AttributeTable> = { status: 200, message: 'OK', response: item };
-    res.status(200).json(response);
-  } catch (error) {
-    console.error(error);
-    const response: API_RESPONSE<AttributeTable> = { status: 500, message: '/api/attribute/id/:id - Internal Server Error', response: null };
     res.status(500).json(response);
   }
 });

@@ -65,7 +65,7 @@ skillRouter.delete('/delete', async (req, res) => {
 });
 
 /* ---------- QUERRYS ---------- */
-skillRouter.get('/?join=attribute', async (req, res) => {
+skillRouter.get('/join_attribute', async (req, res) => {
   interface Join_Attribute extends SkillTable {
     attribute_name: string;
   }
